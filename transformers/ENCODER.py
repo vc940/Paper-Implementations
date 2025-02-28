@@ -12,14 +12,15 @@ class ENCODER_BLOCK(nn.Module):
         self.ffn = FFN(embeddings_dims=embeddings_dims)
         self.attention = multi_head_attention(no_of_heads = attention_heads,embeddings_dims=embeddings_dims)
         self.pos_encoding = pos_encoding(embeddings_dims=embeddings_dims)
-        self.addnorm = AddandNorm(embeddings_dims=embeddings_dims) 
+        self.addnorm1 = AddandNorm(embeddings_dims=embeddings_dims) 
+        self.addnorm2 = AddandNorm(embeddings_dims=embeddings_dims) 
+
     def forward(self,X):
         X = self.pos_encoding(X)
-        print(type(X))
         Y = self.attention(X)
-        X = self.addnorm(X,Y)
+        X = self.addnorm1(X,Y)
         Y = self.ffn(X)
-        X = self.addnorm(X,Y)
+        X = self.addnorm2(X,Y)
         return X
 
 
