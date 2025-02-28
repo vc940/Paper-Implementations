@@ -1,7 +1,7 @@
 import torch 
 from torch import nn
 
-class positional_encoding(nn.Module):
+class pos_encoding(nn.Module):
     def __init__(self,embeddings_length,max_len = 5000):
         super().__init__()
         self.positional_matrix = torch.zeros((max_len,embeddings_length))
