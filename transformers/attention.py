@@ -17,9 +17,10 @@ class multi_head_attention(nn.Module):
         K = self.k(X)
         Q = self.q(X)
         V = self.v(X)
-        K = K.view(batch_size,sequence_length,self.heads,self.head_dims)
-        Q = Q.view(batch_size,sequence_length,self.heads,self.head_dims)
-        V = V.view(batch_size,sequence_length,self.heads,self.head_dims)
+        print(K.shape)
+        K = K.reshape(batch_size,sequence_length,self.heads,self.head_dims)
+        Q = Q.reshape(batch_size,sequence_length,self.heads,self.head_dims)
+        V = V.reshape(batch_size,sequence_length,self.heads,self.head_dims)
         K = K.permute(0, 2, 1, 3)
         Q = Q.permute(0, 2, 1, 3)
         V = V.permute(0, 2, 1, 3)
@@ -30,4 +31,3 @@ class multi_head_attention(nn.Module):
         contextual_embeddings = contextual_embeddings.reshape(batch_size,sequence_length,self.embeddings_dims)
         contextual_embeddings = self.transform(contextual_embeddings)
         return contextual_embeddings
-    
