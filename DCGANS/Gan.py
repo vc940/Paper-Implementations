@@ -122,36 +122,3 @@ for epochs in range(num_epochs):
 
 
 
-
-
-
-
-
-# class Generator(nn.Module):
-#     def __init__(self,in_channels,out_channels):
-#         super().__init__()
-#         def discriminator_block(in_features,out_features,batch_normalize = True):
-#             block = [
-#                 nn.Conv2d(in_features,out_features,3,2,1),
-#                 nn.LeakyReLU(0.2,inplace=True),
-#                 nn.Dropout(0.25)
-#             ]
-#             if not batch_normalize:
-#                 block.append(nn.BatchNorm2d(out_features,0.8))
-
-#         self.model = nn.Sequential(
-#             discriminator_block(in_features=3,out_features= 16,batch_normalize=False),
-#             discriminator_block(16,32),
-#             discriminator_block(32,64),
-#             discriminator_block(64,128),
-
-#         )
-
-        
-
-
-# gan = Gan()
-# print(gan.discriminator(X=torch.randn((1,3,64,64))))
-    
-
-        
